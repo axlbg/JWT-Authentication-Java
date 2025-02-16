@@ -32,4 +32,5 @@ public class AuthController {
         return authService.signUp(signUpRequest.getUsername(), signUpRequest.getPassword());
     }
 
+
 }

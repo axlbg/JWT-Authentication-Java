@@ -16,6 +16,9 @@ public class AuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private JwtService jwtService;
+
     public UserEntity signUp(String username, String password) {
         if (userRepository.findByUsername(username).isPresent()) {
             throw new CustomAuthenticationException("User already exists.");
@@ -36,5 +39,11 @@ public class AuthService {
         }
 
         return user;
+    }
+
+    public UserEntity getUserFromToken(String token) {
+        String username = jwtService.extractUser(token); // Extrae el usuario del token
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new CustomAuthenticationException("User not found"));
     }
 }
