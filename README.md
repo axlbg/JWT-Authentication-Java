@@ -1,2 +1,2 @@
 # JWT Authentication Java
- Login and SignUp with JWT using Java
+API REST - Login and sign-up with JWT using Java
